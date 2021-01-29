@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 const playerService = {
 	createUser( db, newUser ) {
 		return db
@@ -13,9 +15,22 @@ const playerService = {
 		return db
 			.select( '*' )
 			.from( 'userinfo' )
-			.where( {userName} )
+			.where( {username: userName} )
 			.then( result => {
 				return result;
 			})
-	} 
+	}, 
+
+	checkUserLogIn( db, username, password ) {
+		return db
+			.first()
+			.from( 'userinfo' )
+			.where( {username: username})
+			.then( data => {
+				return data;
+				
+			})
+	}
 }
+
+module.exports = playerService;

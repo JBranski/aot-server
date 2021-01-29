@@ -16,21 +16,27 @@ playerRouter
 
 	.post( '/api/login', jsonParser, (req, res, next) => {
 		const {username, password} = req.body;
+		console.log("test");
 		playerService
 			.checkUserLogIn( req.app.get( 'db' ), req.body.username, req.body.password )
-			.then( result => {
-				res.json( result );
-			})
+			.then( data => {
+				console.log(data);
+				bcrypt.compare(password, data.password)
+					.then(( result ) => {
+						if( result ) {
+							return res.status( 200 ).json({ message: `welcome back`})
+						} else {
+							return res.status( 401 ).send( "wrong credentials" );
+						}
+					})
+			}) 
 			.catch( next );
 	})
 
 	.post( '/', jsonParser, ( req, res, next ) => {
 		const { username, password } = req.body;
 		bcrypt.hash(password, 10)
-			.then((err, hash) => {
-				if( err ) {
-					return res.status(400).end();
-				}
+			.then((hash) => {
 				const newUser = {
 					username : username,
 					password : hash
