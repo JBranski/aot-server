@@ -10,27 +10,16 @@ const playerService = {
 				return result[0]
 			})
 	},
-
-	getUserByUserName( db, userName ) {
-		return db
-			.select( '*' )
-			.from( 'userinfo' )
-			.where( {username: userName} )
-			.then( result => {
-				return result;
-			})
-	}, 
-
-	checkUserLogIn( db, username, password ) {
-		return db
-			.first()
-			.from( 'userinfo' )
-			.where( {username: username})
-			.then( data => {
-				return data;
-				
-			})
-	}
+	getUserByUsername( db, username ){
+        return db
+                .select( '*' )
+                .from( 'userinfo' )
+                .where( {username} )
+                .then( result => {
+                    return result;
+                })
+    },
+	
 }
 
 module.exports = playerService;
