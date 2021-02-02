@@ -63,7 +63,7 @@ playerRouter
 		const username = req.body.username;
 		console.log(req.body)
 		playerService
-			.getUserByUsername( req.app.get('db'), username)
+			.getUser( req.app.get('db'), username)
 			.then( result => {
 				res.json(result);
 			})
