@@ -29,9 +29,11 @@ playerRouter
 	})
 	.post( '/login', jsonParser, (req, res, next) => {
 	const {username, password} = req.body;
+	console.log(username, password);
 	playerService
         .getUser( req.app.get( 'db' ), username )
         .then( result => {
+			console.log(result)
             if( ! result ){
                 res.statusMessage = "That user doesn't exist.";
                 return res.status( 404 ).end();

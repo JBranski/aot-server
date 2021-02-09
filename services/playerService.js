@@ -13,8 +13,8 @@ const playerService = {
 	getUser( db, user ){
         return db
                 .select( '*' )
-                .from( 'user' )
-                .where( user )
+                .from( 'userinfo' )
+                .where( {username : user} )
                 .then( result => {
                     return result[0];
                 })

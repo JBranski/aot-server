@@ -5,7 +5,7 @@ const jsonParser = express.json();
 const playerRouter = require( './routers/playerRouter' );
 
 const corsOptions = {
-	origin: 'http://localhost:3000',
+	origin: 'https://aotidle.com',
 	optionsSuccessStatus: 200
   }
 
