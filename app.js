@@ -1,17 +1,17 @@
-const express = require( 'express' );
+const express = require('express');
 const app = express();
 const cors = require('cors')
 const jsonParser = express.json();
-const playerRouter = require( './routers/playerRouter' );
+const playerRouter = require('./routers/playerRouter');
 
 const corsOptions = {
 	origin: 'https://aotidle.com',
 	optionsSuccessStatus: 200
-  }
+}
 
 app.use(cors(corsOptions));
 app.use(jsonParser);
 app.use('/', playerRouter);
-app.use((req, res, next) => { res.status(404).json({dink: true})})
+// app.use((req, res, next) => { res.status(404).json({dink: true})})
 
 module.exports = app;
